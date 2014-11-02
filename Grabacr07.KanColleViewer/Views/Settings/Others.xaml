@@ -125,7 +125,7 @@
 				   Style="{DynamicResource SeparatorRectangleStyleKey}" />
         
         <CheckBox Content="Enable Log"
-					  IsChecked="{Binding LogEnabled, Mode=TwoWay}"
+					  IsChecked="{Binding EnableLogging, Mode=TwoWay}"
 					  Margin="0,4" />
         
         <Rectangle Height="1"

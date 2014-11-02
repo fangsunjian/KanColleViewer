@@ -64,22 +64,27 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-				<TextBlock Grid.Row="0"
-						   Grid.Column="1">
+                <TextBlock Grid.Row="0" Grid.Column="0">
+                    <Run Text="改修資材：" />
+					<Run Text="{Binding Materials.Model.UpgradeMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+                    <LineBreak />
+                    <Run Text="開発資材：" />
+					<Run Text="{Binding Materials.Model.DevelopmentMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+				</TextBlock>
+
+                <TextBlock Grid.Row="0" Grid.Column="1">
 					<Run Text="{Binding Resources.Homeport_InstantRepair, Source={x:Static models:ResourceService.Current}, Mode=OneWay}" />
-					<Run Text="{Binding Materials.Model.InstantRepairMaterials, Mode=OneWay}"
-						 Style="{DynamicResource EmphaticTextElementStyleKey}" />
+					<Run Text="{Binding Materials.Model.InstantRepairMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
 					<LineBreak />
 					<Run Text="{Binding Resources.Homeport_InstantBuild, Source={x:Static models:ResourceService.Current}, Mode=OneWay}" />
-					<Run Text="{Binding Materials.Model.InstantBuildMaterials, Mode=OneWay}"
-						 Style="{DynamicResource EmphaticTextElementStyleKey}" />
-				</TextBlock>
-			</Grid>
+					<Run Text="{Binding Materials.Model.InstantBuildMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+                </TextBlock>
+            </Grid>
 
 			<Grid>
 				<Grid.RowDefinitions>

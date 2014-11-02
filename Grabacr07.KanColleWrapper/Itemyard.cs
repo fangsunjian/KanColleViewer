@@ -152,7 +152,7 @@ namespace Grabacr07.KanColleWrapper
 			var target = KanColleClient.Current.Master.Ships[source.api_get_ship.api_ship_id];
 			if (target == null) return;
 
-			this.droppedItemsCount += target.RawData.api_defeq.Count(x => x != -1);
+			//this.droppedItemsCount += target.RawData.api_defeq.Count(x => x != -1);
 			this.RaisePropertyChanged("SlotItemsCount");
 		}
 

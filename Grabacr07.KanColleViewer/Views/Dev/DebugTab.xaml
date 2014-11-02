@@ -18,10 +18,10 @@
 								   HorizontalAlignment="Left"
 								   Padding="20,5"
 								   MethodName="Notify" />
-        <RichTextBox Height="100" IsReadOnly="True">
+        <RichTextBox Height="100" IsReadOnly="True" DataContext="{Binding}">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="{Binding LogStr, Mode=OneWay}"/>
+                    <Run Text="{Binding LogContent, Mode=OneWay}"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

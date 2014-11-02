@@ -84,8 +84,6 @@ namespace Grabacr07.KanColleWrapper
 			this.Quests = new Quests(proxy);
 			this.Logger = new Logger(proxy);
             
-            KanColleClient.Current.Settings.EnableLogging = true;
-
 			proxy.api_port.TryParse<kcsapi_port>().Subscribe(x =>
 			{
 				this.Organization.Update(x.Data.api_ship);

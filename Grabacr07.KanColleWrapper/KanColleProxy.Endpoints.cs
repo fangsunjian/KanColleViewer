@@ -231,6 +231,14 @@ namespace Grabacr07.KanColleWrapper
 			get { return this.ApiSessionSource.Where(x => x.PathAndQuery == "/kcsapi/api_req_map/start"); }
 		}
 
+        /// <summary>
+        /// エンド ポイント "/kcsapi/api_req_map/next" からのセッションを配信します。
+        /// </summary>
+        public IObservable<Session> api_req_map_next
+        {
+            get { return this.ApiSessionSource.Where(x => x.PathAndQuery == "/kcsapi/api_req_map/next"); }
+        }
+
 		/// <summary>
 		/// エンド ポイント "/kcsapi/api_req_member/updatedeckname" からのセッションを配信します。
 		/// </summary>

@@ -13,9 +13,9 @@ namespace Grabacr07.KanColleWrapper.Models.Raw
 		public string api_name { get; set; }
 		public string api_yomi { get; set; }
 		public int api_stype { get; set; }
-		public int api_ctype { get; set; }
-		public int api_cnum { get; set; }
-		public string api_enqflg { get; set; }
+// 		public int api_ctype { get; set; }
+// 		public int api_cnum { get; set; }
+// 		public string api_enqflg { get; set; }
 		public int api_afterlv { get; set; }
 		public string api_aftershipid { get; set; }
 		public int[] api_taik { get; set; }
@@ -42,7 +42,7 @@ namespace Grabacr07.KanColleWrapper.Models.Raw
 		public int[] api_grow { get; set; }
 		public int api_slot_num { get; set; }
 		public int[] api_maxeq { get; set; }
-		public int[] api_defeq { get; set; }
+		//public int[] api_defeq { get; set; }
 		public int api_buildtime { get; set; }
 		public int[] api_broken { get; set; }
 		public int[] api_powup { get; set; }
