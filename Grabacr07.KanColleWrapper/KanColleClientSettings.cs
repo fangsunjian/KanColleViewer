@@ -56,7 +56,7 @@ namespace Grabacr07.KanColleWrapper
 
 		#region EnableLogging 変更通知プロパティ
 
-		private bool _EnableLogging;
+		private bool _EnableLogging = true;
 
 		public bool EnableLogging
 		{

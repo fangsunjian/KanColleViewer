@@ -123,6 +123,28 @@ namespace Grabacr07.KanColleWrapper
 
 		#endregion
 
+        #region UpgradeMaterials 変更通知プロパティ
+
+        private int _UpgradeMaterials;
+
+        /// <summary>
+        /// 所有している改修資材の数を取得します。
+        /// </summary>
+        public int UpgradeMaterials
+        {
+            get { return this._UpgradeMaterials; }
+            private set
+            {
+                if (this._UpgradeMaterials != value)
+                {
+                    this._UpgradeMaterials = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
+
+        #endregion
+
 		#region InstantRepairMaterials 変更通知プロパティ
 
 		private int _InstantRepairMaterials;
@@ -194,8 +216,9 @@ namespace Grabacr07.KanColleWrapper
 				this.Steel = source[2].api_value;
 				this.Bauxite = source[3].api_value;
 				this.DevelopmentMaterials = source[6].api_value;
-				this.InstantRepairMaterials = source[5].api_value;
-				this.InstantBuildMaterials = source[4].api_value;
+                this.UpgradeMaterials = source[7].api_value;
+                this.InstantRepairMaterials = source[5].api_value;
+                this.InstantBuildMaterials = source[4].api_value;
 			}
 		}
 

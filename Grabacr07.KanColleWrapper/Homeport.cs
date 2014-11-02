@@ -92,7 +92,8 @@ namespace Grabacr07.KanColleWrapper
 				this.Organization.Combined = x.Data.api_combined_flag == 1;
 				this.Materials.Update(x.Data.api_material);
 			});
-			proxy.api_get_member_basic.TryParse<kcsapi_basic>().Subscribe(x => this.UpdateAdmiral(x.Data));
+            proxy.api_get_member_basic.TryParse<kcsapi_basic>().Subscribe(x => this.UpdateAdmiral(x.Data));
+            proxy.api_get_member_record.TryParse<kcsapi_record>().Subscribe(x => this.UpdateAdmiral(x.Data));
 			proxy.api_req_member_updatecomment.TryParse().Subscribe(this.UpdateComment);
 		}
 
@@ -101,6 +102,14 @@ namespace Grabacr07.KanColleWrapper
 		{
 			this.Admiral = new Admiral(data);
 		}
+
+        internal void UpdateAdmiral(kcsapi_record data)
+        {
+            this.Admiral.RawData.api_experience = data.api_experience[0];
+            this.Admiral.RawData.api_level = data.api_level;
+
+            this.Admiral = new Admiral(this.Admiral.RawData);
+        }
 
 		private void UpdateComment(SvData data)
 		{
