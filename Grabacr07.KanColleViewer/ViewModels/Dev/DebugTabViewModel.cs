@@ -39,7 +39,8 @@ namespace Grabacr07.KanColleViewer.ViewModels.Dev
 		{
 			PluginHost.Instance.GetNotifier()
 				.Show(NotifyType.Other, Properties.Resources.Debug_NotificationMessage_Title, Properties.Resources.Debug_NotificationMessage, () => App.ViewModelRoot.Activate());
-		}
+            KanColleClient.Current.Homeport.Logger.Test();
+        }
 
         public DebugTabViewModel()
 		{

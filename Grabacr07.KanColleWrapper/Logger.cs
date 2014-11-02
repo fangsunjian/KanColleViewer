@@ -33,11 +33,17 @@ namespace Grabacr07.KanColleWrapper
 			ShipDrop
 		};
 
-//         public void Test()
-//         {
-//             sb.AppendLine("Test:");
-//             this.RaisePropertyChanged("Log");
-//         }
+        public void Test()
+        {
+            sb.AppendLine("Test:");
+            sb.AppendLine("Test:");
+            sb.AppendLine("Test:");
+            sb.AppendLine("Test:");
+            sb.AppendLine("Test:");
+            sb.AppendLine("Test:");
+            sb.AppendLine("Test:");
+            this.RaisePropertyChanged("Log");
+        }
 
 		internal Logger(KanColleProxy proxy)
 		{

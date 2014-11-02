@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Grabacr07.KanColleViewer.Views.Dev.DebugTab"
+﻿<UserControl
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -9,21 +9,20 @@
 			 xmlns:properties="clr-namespace:Grabacr07.KanColleViewer.Properties"
 			 xmlns:vm="clr-namespace:Grabacr07.KanColleViewer.ViewModels.Dev"
 			 xmlns:controls="clr-namespace:Grabacr07.Desktop.Metro.Controls;assembly=Desktop.Metro"
+             xmlns:metro="http://schemes.grabacr.net/winfx/2014/controls"
+             xmlns:metro2="clr-namespace:Grabacr07.Desktop.Metro.Controls;assembly=Desktop.Metro"
+			 xmlns:Custom="http://schemes.grabacr.net/winfx/2014/controls" x:Class="Grabacr07.KanColleViewer.Views.Dev.DebugTab"
 			 mc:Ignorable="d"
 			 d:DesignWidth="700"
 			 d:DesignHeight="300"
-			 d:DataContext="{d:DesignInstance vm:DebugTabViewModel}">
-	<StackPanel Margin="10,0,10,10">
-		<controls:CallMethodButton Content="Test notify"
-								   HorizontalAlignment="Left"
-								   Padding="20,5"
-								   MethodName="Notify" />
-        <RichTextBox Height="100" IsReadOnly="True" DataContext="{Binding}">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="{Binding LogContent, Mode=OneWay}"/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+			 d:DataContext="{d:DesignInstance {x:Type vm:DebugTabViewModel}}">
+    <StackPanel Margin="10,0,10,10">
+        <controls:CallMethodButton Content="Test notify"
+			HorizontalAlignment="Left"
+			Padding="20,5"
+			MethodName="Notify" />
+        <TextBlock DataContext="{Binding}" FontFamily="Segoe UI">
+			<Run Text="{Binding LogContent, Mode=OneWay}"/>
+        </TextBlock>
     </StackPanel>
 </UserControl>
