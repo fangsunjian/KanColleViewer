@@ -9,15 +9,15 @@ using Grabacr07.KanColleViewer.Composition;
 namespace Grabacr07.KanColleViewer.Plugins
 {
 	[Export(typeof(INotifier))]
-	[ExportMetadata("Title", "WindowsNotifier")]
+	[ExportMetadata("Title", "WindowsNotifier2")]
     [ExportMetadata("Description", "Windows OS の機能 (トースト通知・バルーン通知) を使用して通知します。\nNotifierSettings.xmlの定義によるサウンドを再生通知（ミュートされると再生できなくなります。）")]
 	[ExportMetadata("Version", "0.5")]
 	[ExportMetadata("Author", "-")]
-	public class WindowsNotifier : INotifier
+	public class WindowsNotifier2 : INotifier
 	{
 		private readonly INotifier notifier;
 
-		public WindowsNotifier()
+		public WindowsNotifier2()
 		{
 			this.notifier = Windows8Notifier.IsSupported
 				? (INotifier) new Windows8Notifier()
