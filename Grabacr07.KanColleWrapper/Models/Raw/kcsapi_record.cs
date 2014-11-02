@@ -17,7 +17,6 @@ namespace Grabacr07.KanColleWrapper.Models.Raw
         public int api_level { get; set; }
         public int api_rank { get; set; }
         public int[] api_experience { get; set; }
-        public int api_mission { get; set; }
         public Api_War api_war { get; set; }
         public Api_Mission api_mission { get; set; }
         public Api_Practice api_practice { get; set; }

@@ -35,24 +35,24 @@ namespace Grabacr07.KanColleViewer.Plugins
 					Visible = true,
 				};
 			}
-		}
+        }
 
 		public void Show(NotifyType type, string header, string body, Action activated, Action<Exception> failed = null)
 		{
-			if (this.notifyIcon == null)
-				return;
+            if (this.notifyIcon == null)
+                return;
 
-			if (activated != null)
-			{
-				this.notifyIcon.BalloonTipClicked -= this.activatedAction;
+            if (activated != null)
+            {
+                this.notifyIcon.BalloonTipClicked -= this.activatedAction;
 
-				this.activatedAction = (sender, args) => activated();
-				this.notifyIcon.BalloonTipClicked += this.activatedAction;
-			}
+                this.activatedAction = (sender, args) => activated();
+                this.notifyIcon.BalloonTipClicked += this.activatedAction;
+            }
 
-			notifyIcon.ShowBalloonTip(1000, header, body, ToolTipIcon.None);
+            notifyIcon.ShowBalloonTip(1000, header, body, ToolTipIcon.None);
 		}
-
+   
 		public object GetSettingsView()
 		{
 			return null;
