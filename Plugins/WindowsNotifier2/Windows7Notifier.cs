@@ -14,7 +14,8 @@ namespace Grabacr07.KanColleViewer.Plugins
 	{
 		private NotifyIcon notifyIcon;
 		private EventHandler activatedAction;
-        private const string NOTIFIER_SETTING_NAME = "NotifierSettings.xml";
+        private const string NOTIFIER_SETTING = "NotifierSettings.xml";
+        private const string NOTIFIER_SETTING2 = "Plugins\\NotifierSettings.xml";
 
 		public void Initialize()
 		{
@@ -65,11 +66,18 @@ namespace Grabacr07.KanColleViewer.Plugins
         {
             try
             {
-                if (!System.IO.File.Exists(NOTIFIER_SETTING_NAME))
-                    return false;
+                string settingsPath = NOTIFIER_SETTING;
+                if (!System.IO.File.Exists(settingsPath))
+                {
+                    settingsPath = NOTIFIER_SETTING2;
+                    if (!System.IO.File.Exists(settingsPath))
+                    {
+                        return false;
+                    }
+                }
 
                 string soundPath = string.Empty;
-                XmlTextReader reader = new XmlTextReader(NOTIFIER_SETTING_NAME);
+                XmlTextReader reader = new XmlTextReader(settingsPath);
                 while (reader.Read())
                 {
                     if (reader.Name == "Sound")

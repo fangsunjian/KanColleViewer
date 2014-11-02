@@ -1,0 +1,1 @@
+﻿Copy NotifierSettings.xml to KanColleViewer root directory
