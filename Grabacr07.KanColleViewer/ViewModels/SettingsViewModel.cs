@@ -199,7 +199,6 @@ namespace Grabacr07.KanColleViewer.ViewModels
 				if (Settings.Current.KanColleClientSettings.EnableLogging != value)
 				{
 					Settings.Current.KanColleClientSettings.EnableLogging = value;
-					KanColleClient.Current.Homeport.Logger.EnableLogging = value;
 					this.RaisePropertyChanged();
 				}
 			}
@@ -287,6 +286,25 @@ namespace Grabacr07.KanColleViewer.ViewModels
 
 		#endregion
 
+        #region LogEnabled 変更通知プロパティ
+
+        private bool _LogEnabled;
+
+        public bool LogEnabled
+        {
+            get { return this._LogEnabled; }
+            set
+            {
+                if (this._LogEnabled != value)
+                {
+                    this._LogEnabled = value;
+                    this.RaisePropertyChanged();
+                    Settings.Current.KanColleClientSettings.EnableLogging = value;
+                }
+            }
+        }
+
+        #endregion
 
 		public SettingsViewModel()
 		{

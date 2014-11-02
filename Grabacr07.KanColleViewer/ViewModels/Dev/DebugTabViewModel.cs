@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Grabacr07.KanColleViewer.Composition;
+using Grabacr07.KanColleWrapper;
 
 namespace Grabacr07.KanColleViewer.ViewModels.Dev
 {
@@ -20,5 +21,11 @@ namespace Grabacr07.KanColleViewer.ViewModels.Dev
 				.Show(NotifyType.Other, Properties.Resources.Debug_NotificationMessage_Title, Properties.Resources.Debug_NotificationMessage, () => App.ViewModelRoot.Activate());
 		}
 
+        public string LogStr
+        {
+            get {
+                return KanColleClient.Current.Homeport.Logger.Content; 
+            }
+        }
 	}
 }

@@ -10,16 +10,21 @@ using Grabacr07.KanColleWrapper.Internal;
 using Grabacr07.KanColleWrapper.Models;
 using Grabacr07.KanColleWrapper.Models.Raw;
 using Livet;
+using System.Text;
 
 namespace Grabacr07.KanColleWrapper
 {
 	public class Logger : NotificationObject
 	{
-		public bool EnableLogging { get; set; }
+        public bool EnableLogging { get { return KanColleClient.Current.Settings.EnableLogging; } }
 
 		private bool waitingForShip;
 		private int dockid;
 		private readonly int[] shipmats;
+
+        StringBuilder sb;
+
+        public string Content { get { return sb.ToString(); } }
 
 		private enum LogType
 		{
@@ -31,18 +36,19 @@ namespace Grabacr07.KanColleWrapper
 		internal Logger(KanColleProxy proxy)
 		{
 			this.shipmats = new int[5];
+            sb = new StringBuilder();
 
 			// ちょっと考えなおす
-			//proxy.api_req_kousyou_createitem.TryParse<kcsapi_createitem>().Subscribe(x => this.CreateItem(x.Data, x.Request));
-			//proxy.api_req_kousyou_createship.TryParse<kcsapi_createship>().Subscribe(x => this.CreateShip(x.Request));
-			//proxy.api_get_member_kdock.TryParse<kcsapi_kdock[]>().Subscribe(x => this.KDock(x.Data));
-			//proxy.api_req_sortie_battleresult.TryParse<kcsapi_battleresult>().Subscribe(x => this.BattleResult(x.Data));
+            proxy.api_req_kousyou_createitem.TryParse<kcsapi_createitem>().Subscribe(x => this.CreateItem(x.Data, x.Request));
+            proxy.api_req_kousyou_createship.TryParse<kcsapi_createship>().Subscribe(x => this.CreateShip(x.Request));
+            proxy.api_get_member_kdock.TryParse<kcsapi_kdock[]>().Subscribe(x => this.KDock(x.Data));
+            proxy.api_req_sortie_battleresult.TryParse<kcsapi_battleresult>().Subscribe(x => this.BattleResult(x.Data));
 		}
 
 		private void CreateItem(kcsapi_createitem item, NameValueCollection req)
 		{
 			this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6}", item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slotitem_id].Name : "NA",
-				KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.ShipType.Name,
+				KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name,
 				req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], DateTime.Now.ToString("M/d/yyyy H:mm"));
 		}
 
@@ -93,6 +99,7 @@ namespace Grabacr07.KanColleWrapper
 					using (var w = File.AppendText(mainFolder + "\\ItemBuildLog.csv"))
 					{
 						w.WriteLine(format, args);
+                        sb.AppendLine(string.Format(format, args));
 					}
 					break;
 
@@ -107,7 +114,8 @@ namespace Grabacr07.KanColleWrapper
 					using (var w = File.AppendText(mainFolder + "\\ShipBuildLog.csv"))
 					{
 						w.WriteLine(format, args);
-					}
+                        sb.AppendLine(string.Format(format, args));
+                    }
 					break;
 
 				case LogType.ShipDrop:
@@ -121,9 +129,12 @@ namespace Grabacr07.KanColleWrapper
 					using (var w = File.AppendText(mainFolder + "\\DropLog.csv"))
 					{
 						w.WriteLine(format, args);
-					}
+                        sb.AppendLine(string.Format(format, args));
+                    }
 					break;
 			}
+
+            this.RaisePropertyChanged();
 		}
 	}
 }

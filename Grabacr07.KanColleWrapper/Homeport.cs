@@ -83,6 +83,8 @@ namespace Grabacr07.KanColleWrapper
 			this.Dockyard = new Dockyard(proxy);
 			this.Quests = new Quests(proxy);
 			this.Logger = new Logger(proxy);
+            
+            KanColleClient.Current.Settings.EnableLogging = true;
 
 			proxy.api_port.TryParse<kcsapi_port>().Subscribe(x =>
 			{
@@ -92,6 +94,7 @@ namespace Grabacr07.KanColleWrapper
 				this.Organization.Combined = x.Data.api_combined_flag == 1;
 				this.Materials.Update(x.Data.api_material);
 			});
+
             proxy.api_get_member_basic.TryParse<kcsapi_basic>().Subscribe(x => this.UpdateAdmiral(x.Data));
             proxy.api_get_member_record.TryParse<kcsapi_record>().Subscribe(x => this.UpdateAdmiral(x.Data));
 			proxy.api_req_member_updatecomment.TryParse().Subscribe(this.UpdateComment);

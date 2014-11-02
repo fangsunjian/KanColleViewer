@@ -120,8 +120,15 @@
 							  SelectedValue="{Binding Culture, Mode=TwoWay}"
 							  IsReadOnly="True"
 							  MinWidth="250" />
-
-		<Rectangle Height="1"
+        
+        <Rectangle Height="1"
+				   Style="{DynamicResource SeparatorRectangleStyleKey}" />
+        
+        <CheckBox Content="Enable Log"
+					  IsChecked="{Binding LogEnabled, Mode=TwoWay}"
+					  Margin="0,4" />
+        
+        <Rectangle Height="1"
 				   Style="{DynamicResource SeparatorRectangleStyleKey}" />
 
 		<!--<TextBlock Text="{Binding Source={x:Static properties:Resources.Settings_Logging}, Mode=OneWay}"
