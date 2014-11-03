@@ -73,9 +73,9 @@ namespace Grabacr07.KanColleWrapper
 
 		private void CreateItem(kcsapi_createitem item, NameValueCollection req)
 		{
-			this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6}", item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slotitem_id].Name : "NA",
+			this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6}",
 				KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name,
-				req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], DateTime.Now.ToString("M/d/yyyy H:mm"));
+                req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slotitem_id].Name : "NA", DateTime.Now.ToString("M/d/yyyy H:mm"));
 		}
 
 		private void CreateShip(NameValueCollection req)
@@ -93,7 +93,7 @@ namespace Grabacr07.KanColleWrapper
 		{
 			foreach (var dock in docks.Where(dock => this.waitingForShip && dock.api_id == this.dockid))
 			{
-				this.Log(LogType.BuildShip, "{0},{1},{2},{3},{4},{5},{6}", KanColleClient.Current.Master.Ships[dock.api_created_ship_id].Name, this.shipmats[0], this.shipmats[1], this.shipmats[2], this.shipmats[3], this.shipmats[4], DateTime.Now.ToString("M/d/yyyy H:mm"));
+                this.Log(LogType.BuildShip, "{0},{1},{2},{3},{4},{5},{6},{7}", KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name, this.shipmats[0], this.shipmats[1], this.shipmats[2], this.shipmats[3], this.shipmats[4], KanColleClient.Current.Master.Ships[dock.api_created_ship_id].Name, DateTime.Now.ToString("M/d/yyyy H:mm"));
 				this.waitingForShip = false;
 			}
 		}
@@ -119,10 +119,10 @@ namespace Grabacr07.KanColleWrapper
 					{
                         using (StreamWriter w = new StreamWriter(mainFolder + "\\ItemBuildLog.csv", true, Encoding.UTF8))
                         {
-                            w.WriteLine("Result,Secretary,Fuel,Ammo,Steel,Bauxite,Date", args);
+                            w.WriteLine("Secretary,Fuel,Ammo,Steel,Bauxite,Result,Date", args);
                         }
 					}
-                    using (StreamWriter w = new StreamWriter("\\ItemBuildLog.csv", true, Encoding.UTF8))
+                    using (StreamWriter w = new StreamWriter(mainFolder + "\\ItemBuildLog.csv", true, Encoding.UTF8))
                     {
                         w.WriteLine(format, args);
                     }
@@ -133,7 +133,7 @@ namespace Grabacr07.KanColleWrapper
 					{
                         using (StreamWriter w = new StreamWriter(mainFolder + "\\ShipBuildLog.csv", true, Encoding.UTF8))
                         {
-                            w.WriteLine("Result,Fuel,Ammo,Steel,Bauxite,# of Build Materials,Date", args);
+                            w.WriteLine("Secretary,Fuel,Ammo,Steel,Bauxite,# of Build Materials,Result,Date", args);
                         }
 					}
 
