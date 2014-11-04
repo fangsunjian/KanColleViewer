@@ -51,10 +51,10 @@ namespace Grabacr07.KanColleWrapper
             sb = new StringBuilder();
 
 			// ちょっと考えなおす
-            proxy.api_req_kousyou_createitem.TryParse<kcsapi_createitem>().Subscribe(x => this.CreateItem(x.Data, x.Request));
-            proxy.api_req_kousyou_createship.TryParse<kcsapi_createship>().Subscribe(x => this.CreateShip(x.Request));
-            proxy.api_get_member_kdock.TryParse<kcsapi_kdock[]>().Subscribe(x => this.KDock(x.Data));
-            proxy.api_req_sortie_battleresult.TryParse<kcsapi_battleresult>().Subscribe(x => this.BattleResult(x.Data));
+            proxy.api_req_kousyou_createitem.TryParse<kcsapi_createitem>().Subscribe(x => Task.Run(()=> this.CreateItem(x.Data, x.Request)));
+            proxy.api_req_kousyou_createship.TryParse<kcsapi_createship>().Subscribe(x => Task.Run(() => this.CreateShip(x.Request)));
+            proxy.api_get_member_kdock.TryParse<kcsapi_kdock[]>().Subscribe(x => Task.Run(() => this.KDock(x.Data)));
+            proxy.api_req_sortie_battleresult.TryParse<kcsapi_battleresult>().Subscribe(x => Task.Run(() => this.BattleResult(x.Data)));
 //             proxy.api_req_map_start.TryParse<kcsapi_map_start>().Subscribe(x => this.ShipStart(x.Data));
 //             proxy.api_req_map_next.TryParse<kcsapi_map_next>().Subscribe(x => this.ShipNext(x.Data));
         }
@@ -75,7 +75,7 @@ namespace Grabacr07.KanColleWrapper
 		{
 			this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6}",
 				KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name,
-                req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slotitem_id].Name : "N/A", DateTime.Now.ToString("M/d/yyyy H:mm"));
+                req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slot_item.api_slotitem_id].Name : "N/A", DateTime.Now.ToString("M/d/yyyy H:mm"));
 		}
 
 		private void CreateShip(NameValueCollection req)

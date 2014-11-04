@@ -90,25 +90,25 @@ namespace Grabacr07.KanColleWrapper
 			this.Ships = new MemberTable<Ship>();
 			this.Fleets = new MemberTable<Fleet>();
 
-			proxy.api_get_member_ship.TryParse<kcsapi_ship2[]>().Subscribe(x => this.Update(x.Data));
+			proxy.api_get_member_ship.TryParse<kcsapi_ship2[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
 			proxy.api_get_member_ship2.TryParse<kcsapi_ship2[]>().Subscribe(x =>
-			{
+			Task.Run(() =>{
 				this.Update(x.Data);
 				this.Update(x.Fleets);
-			});
+			}));
 			proxy.api_get_member_ship3.TryParse<kcsapi_ship3>().Subscribe(x =>
-			{
+			Task.Run(() =>{
 				this.Update(x.Data.api_ship_data);
 				this.Update(x.Data.api_deck_data);
-			});
+			}));
 
-			proxy.api_get_member_deck.TryParse<kcsapi_deck[]>().Subscribe(x => this.Update(x.Data));
-			proxy.api_get_member_deck_port.TryParse<kcsapi_deck[]>().Subscribe(x => this.Update(x.Data));
+			proxy.api_get_member_deck.TryParse<kcsapi_deck[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
+			proxy.api_get_member_deck_port.TryParse<kcsapi_deck[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
 
 			proxy.api_req_hensei_change.TryParse().Subscribe(this.Change);
-			proxy.api_req_hokyu_charge.TryParse<kcsapi_charge>().Subscribe(x => this.Charge(x.Data));
+			proxy.api_req_hokyu_charge.TryParse<kcsapi_charge>().Subscribe(x => Task.Run(() =>this.Charge(x.Data)));
 			proxy.api_req_kaisou_powerup.TryParse<kcsapi_powerup>().Subscribe(this.Powerup);
-			proxy.api_req_kousyou_getship.TryParse<kcsapi_kdock_getship>().Subscribe(x => this.GetShip(x.Data));
+			proxy.api_req_kousyou_getship.TryParse<kcsapi_kdock_getship>().Subscribe(x => Task.Run(() =>this.GetShip(x.Data)));
 			proxy.api_req_kousyou_destroyship.TryParse<kcsapi_destroyship>().Subscribe(this.DestoryShip);
 			proxy.api_req_member_updatedeckname.TryParse().Subscribe(this.UpdateFleetName);
 
