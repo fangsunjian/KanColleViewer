@@ -59,9 +59,37 @@ namespace Grabacr07.KanColleViewer.ViewModels.Catalogs
 		public async void Update()
 		{
 			this.IsReloading = true;
-			this.SlotItems = await UpdateCore();
+            Task.Run(() => { this.SlotItems = UpdateCoreSync(); });
+			//this.SlotItems = await UpdateCore();
 			this.IsReloading = false;
 		}
+
+        private List<SlotItemViewModel> UpdateCoreSync()
+        {
+            // これはひどい
+            // あとでちゃんと書き直す
+
+            var ships = KanColleClient.Current.Homeport.Organization.Ships;
+            var items = KanColleClient.Current.Homeport.Itemyard.SlotItems;
+            var master = KanColleClient.Current.Master.SlotItems;
+
+            var dic = items.GroupBy(kvp => kvp.Value.Info.Id, kvp => kvp.Value)
+                .ToDictionary(g => g.Key, g => new SlotItemViewModel { SlotItem = master[g.Key], Count = g.Count() });
+
+            foreach (var ship in ships.Values)
+            {
+                foreach (var target in ship.SlotItems.Where(x => x != null).Select(item => dic[item.Info.Id]))
+                {
+
+                    target.AddShip(ship);
+                }
+            }
+
+            return dic.Values
+                .OrderBy(x => x.SlotItem.CategoryId)
+                .ThenBy(x => x.SlotItem.Id)
+                .ToList();
+        }
 
 		private static Task<List<SlotItemViewModel>> UpdateCore()
 		{
@@ -81,6 +109,7 @@ namespace Grabacr07.KanColleViewer.ViewModels.Catalogs
 				{
 					foreach (var target in ship.SlotItems.Where(x => x != null).Select(item => dic[item.Info.Id]))
 					{
+                        
 						target.AddShip(ship);
 					}
 				}
