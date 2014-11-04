@@ -86,19 +86,19 @@ namespace Grabacr07.KanColleWrapper
 			this.Logger = new Logger(proxy);
 
             proxy.api_port.TryParse<kcsapi_port>().Subscribe(x =>
-                Task.Run(() =>
                 {
                     this.Organization.Update(x.Data.api_ship);
                     this.Repairyard.Update(x.Data.api_ndock);
                     this.Organization.Update(x.Data.api_deck_port);
                     this.Organization.Combined = x.Data.api_combined_flag == 1;
                     this.Materials.Update(x.Data.api_material);
-                })
+                }
             );
 
-            proxy.api_get_member_basic.TryParse<kcsapi_basic>().Subscribe(x => Task.Run(() =>this.UpdateAdmiral(x.Data)));
-            proxy.api_get_member_record.TryParse<kcsapi_record>().Subscribe(x =>Task.Run(() => this.UpdateAdmiral(x.Data)));
-			proxy.api_req_member_updatecomment.TryParse().Subscribe(x => Task.Run(() =>this.UpdateComment(x)));
+
+            proxy.api_get_member_basic.TryParse<kcsapi_basic>().Subscribe(x => this.UpdateAdmiral(x.Data));
+            proxy.api_get_member_record.TryParse<kcsapi_record>().Subscribe(x => this.UpdateAdmiral(x.Data));
+			proxy.api_req_member_updatecomment.TryParse().Subscribe(x => this.UpdateComment(x));
 		}
 
 

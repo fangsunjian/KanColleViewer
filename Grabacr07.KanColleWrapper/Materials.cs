@@ -201,9 +201,9 @@ namespace Grabacr07.KanColleWrapper
 
 		internal Materials(KanColleProxy proxy)
 		{
-			proxy.api_get_member_material.TryParse<kcsapi_material[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
-			proxy.api_req_hokyu_charge.TryParse<kcsapi_charge>().Subscribe(x => Task.Run(() =>this.Update(x.Data.api_material)));
-			proxy.api_req_kousyou_destroyship.TryParse<kcsapi_destroyship>().Subscribe(x => Task.Run(() =>this.Update(x.Data.api_material)));
+			proxy.api_get_member_material.TryParse<kcsapi_material[]>().Subscribe(x => this.Update(x.Data));
+			proxy.api_req_hokyu_charge.TryParse<kcsapi_charge>().Subscribe(x => this.Update(x.Data.api_material));
+			proxy.api_req_kousyou_destroyship.TryParse<kcsapi_destroyship>().Subscribe(x => this.Update(x.Data.api_material));
 		}
 
 
