@@ -177,6 +177,9 @@ namespace Grabacr07.KanColleViewer.Models
 		{
 			try
 			{
+                if (string.IsNullOrEmpty(source))
+                    return source;
+
 				using (var rijndael = new RijndaelManaged())
 				{
 					byte[] key, iv;
