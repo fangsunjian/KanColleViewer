@@ -98,7 +98,7 @@ namespace Grabacr07.KanColleWrapper
 
             proxy.api_get_member_basic.TryParse<kcsapi_basic>().Subscribe(x => Task.Run(() =>this.UpdateAdmiral(x.Data)));
             proxy.api_get_member_record.TryParse<kcsapi_record>().Subscribe(x =>Task.Run(() => this.UpdateAdmiral(x.Data)));
-			proxy.api_req_member_updatecomment.TryParse().Subscribe(this.UpdateComment);
+			proxy.api_req_member_updatecomment.TryParse().Subscribe(x => Task.Run(() =>this.UpdateComment(x)));
 		}
 
 

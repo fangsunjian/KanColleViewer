@@ -111,7 +111,7 @@ namespace Grabacr07.KanColleWrapper
 			proxy.api_get_member_questlist
 				.Select(Serialize)
 				.Where(x => x != null)
-				.Subscribe(this.Update);
+				.Subscribe(x => Task.Run(() =>this.Update(x)));
 		}
 
 		private static kcsapi_questlist Serialize(Session session)

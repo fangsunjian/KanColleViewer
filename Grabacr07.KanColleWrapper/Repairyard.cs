@@ -43,8 +43,8 @@ namespace Grabacr07.KanColleWrapper
 			this.Docks = new MemberTable<RepairingDock>();
 
 			proxy.api_get_member_ndock.TryParse<kcsapi_ndock[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
-			proxy.api_req_nyukyo_start.TryParse().Subscribe(this.Start);
-			proxy.api_req_nyukyo_speedchange.TryParse().Subscribe(this.ChangeSpeed);
+			proxy.api_req_nyukyo_start.TryParse().Subscribe(x => Task.Run(() =>this.Start(x)));
+			proxy.api_req_nyukyo_speedchange.TryParse().Subscribe(x => Task.Run(() =>this.ChangeSpeed(x)));
 		}
 
 

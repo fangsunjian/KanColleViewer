@@ -63,8 +63,8 @@ namespace Grabacr07.KanColleWrapper
 
 			proxy.api_get_member_kdock.TryParse<kcsapi_kdock[]>().Subscribe(x => Task.Run(()=> this.Update(x.Data)));
             proxy.api_req_kousyou_getship.TryParse<kcsapi_kdock_getship>().Subscribe(x => Task.Run(() => this.GetShip(x.Data)));
-			proxy.api_req_kousyou_createship_speedchange.TryParse().Subscribe(this.ChangeSpeed);
-			proxy.api_req_kousyou_createitem.TryParse<kcsapi_createitem>().Subscribe(this.CreateSlotItem);
+			proxy.api_req_kousyou_createship_speedchange.TryParse().Subscribe(x => Task.Run(() => this.ChangeSpeed(x)));
+			proxy.api_req_kousyou_createitem.TryParse<kcsapi_createitem>().Subscribe(x => Task.Run(() => this.CreateSlotItem(x)));
 		}
 
 

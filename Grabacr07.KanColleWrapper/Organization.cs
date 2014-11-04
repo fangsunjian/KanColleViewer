@@ -105,12 +105,12 @@ namespace Grabacr07.KanColleWrapper
 			proxy.api_get_member_deck.TryParse<kcsapi_deck[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
 			proxy.api_get_member_deck_port.TryParse<kcsapi_deck[]>().Subscribe(x => Task.Run(() =>this.Update(x.Data)));
 
-			proxy.api_req_hensei_change.TryParse().Subscribe(this.Change);
+			proxy.api_req_hensei_change.TryParse().Subscribe(x => Task.Run(() =>this.Change(x)));
 			proxy.api_req_hokyu_charge.TryParse<kcsapi_charge>().Subscribe(x => Task.Run(() =>this.Charge(x.Data)));
-			proxy.api_req_kaisou_powerup.TryParse<kcsapi_powerup>().Subscribe(this.Powerup);
+			proxy.api_req_kaisou_powerup.TryParse<kcsapi_powerup>().Subscribe(x => Task.Run(() =>this.Powerup(x)));
 			proxy.api_req_kousyou_getship.TryParse<kcsapi_kdock_getship>().Subscribe(x => Task.Run(() =>this.GetShip(x.Data)));
-			proxy.api_req_kousyou_destroyship.TryParse<kcsapi_destroyship>().Subscribe(this.DestoryShip);
-			proxy.api_req_member_updatedeckname.TryParse().Subscribe(this.UpdateFleetName);
+			proxy.api_req_kousyou_destroyship.TryParse<kcsapi_destroyship>().Subscribe(x => Task.Run(() =>this.DestoryShip(x)));
+			proxy.api_req_member_updatedeckname.TryParse().Subscribe(x => Task.Run(() =>this.UpdateFleetName(x)));
 
 			proxy.api_req_hensei_combined.TryParse<kcsapi_hensei_combined>()
 				.Subscribe(x => this.Combined = x.Data.api_combined == 1);
