@@ -17,10 +17,11 @@
 			 d:DesignHeight="300"
 			 d:DataContext="{d:DesignInstance {x:Type vm:DebugTabViewModel}}">
     <StackPanel Margin="10,0,10,10">
-        <controls:CallMethodButton Content="Test notify"
+<!--         <controls:CallMethodButton Content="Test notify"
 			HorizontalAlignment="Left"
 			Padding="20,5"
 			MethodName="Notify" />
+-->
         <TextBlock DataContext="{Binding}" FontFamily="Segoe UI">
 			<Run Text="{Binding LogContent, Mode=OneWay}"/>
         </TextBlock>

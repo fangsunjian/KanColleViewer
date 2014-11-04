@@ -16,22 +16,22 @@
 			 mc:Ignorable="d"
 			 d:DesignWidth="600"
 			 d:DataContext="{d:DesignInstance viewModels:MainContentViewModel}">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="Auto" />
-		</Grid.ColumnDefinitions>
-		<Grid.Resources>
-			<Style TargetType="{x:Type TextBlock}"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" MinWidth="360" />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}"
 				   BasedOn="{StaticResource DefaultTextStyleKey}">
-				<Setter Property="Margin"
+                <Setter Property="Margin"
 						Value="12,0" />
-			</Style>
-		</Grid.Resources>
+            </Style>
+        </Grid.Resources>
 
-		<StackPanel Orientation="Horizontal"
+        <StackPanel Orientation="Horizontal"
 					DataContext="{Binding Admiral}">
-			<TextBlock>
+            <TextBlock>
 				<Run Text="{Binding Model.Nickname, Mode=OneWay}"
 					 Style="{DynamicResource EmphaticTextElementStyleKey}"
 					 FontSize="18" />
@@ -40,9 +40,9 @@
 					 FontSize="14" />
 				<LineBreak />
 				<Run Text="{Binding Model.Comment, Mode=OneWay}" />
-			</TextBlock>
+            </TextBlock>
 
-			<TextBlock>
+            <TextBlock>
 				<Run Text="{Binding Resources.Homeport_FleetHQ, Source={x:Static models:ResourceService.Current}, Mode=OneWay}" />
 				<Run Text="Lv."
 					 Style="{DynamicResource EmphaticTextElementStyleKey}"
@@ -54,30 +54,52 @@
 				<Run Text="Next:" />
 				<Run Text="{Binding Model.ExperienceForNexeLevel, Mode=OneWay}" />
 				<Run Text="exp." />
-			</TextBlock>
-		</StackPanel>
+            </TextBlock>
+        </StackPanel>
 
-		<StackPanel Grid.Column="1"
+        <StackPanel Grid.Column="1"
 					Orientation="Horizontal">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0">
+                <TextBlock Grid.Column="0">
+                    <Run Text="燃料：" />
+					<Run Text="{Binding Materials.Model.Fuel, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+                    <LineBreak />
+                    <Run Text="弾薬：" />
+					<Run Text="{Binding Materials.Model.Ammunition, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+                </TextBlock>
+                <TextBlock Grid.Column="1">
+                    <Run Text="鋼材：" />
+					<Run Text="{Binding Materials.Model.Steel, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+                    <LineBreak />
+                    <Run Text="ボーキ：" />
+					<Run Text="{Binding Materials.Model.Bauxite, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
+                </TextBlock>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0">
                     <Run Text="改修資材：" />
 					<Run Text="{Binding Materials.Model.UpgradeMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                     <LineBreak />
                     <Run Text="開発資材：" />
 					<Run Text="{Binding Materials.Model.DevelopmentMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
-				</TextBlock>
-
-                <TextBlock Grid.Row="0" Grid.Column="1">
+                </TextBlock>
+                <TextBlock Grid.Column="1">
 					<Run Text="{Binding Resources.Homeport_InstantRepair, Source={x:Static models:ResourceService.Current}, Mode=OneWay}" />
 					<Run Text="{Binding Materials.Model.InstantRepairMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
 					<LineBreak />
@@ -85,18 +107,17 @@
 					<Run Text="{Binding Materials.Model.InstantBuildMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                 </TextBlock>
             </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-
-				<TextBlock Grid.Row="0"
+                <TextBlock Grid.Row="0"
 						   Grid.Column="1">
 					<Run Text="{Binding Resources.Homeport_NoOfShips, Source={x:Static models:ResourceService.Current}, Mode=OneWay}" />
 					<Run Text="{Binding Ships.Count, Mode=OneWay}"
@@ -109,8 +130,8 @@
 						 Style="{DynamicResource EmphaticTextElementStyleKey}" />
 					<Run Text="/" />
 					<Run Text="{Binding Admiral.Model.MaxSlotItemCount, Mode=OneWay}" />
-				</TextBlock>
-			</Grid>
-		</StackPanel>
-	</Grid>
+                </TextBlock>
+            </Grid>
+        </StackPanel>
+    </Grid>
 </UserControl>

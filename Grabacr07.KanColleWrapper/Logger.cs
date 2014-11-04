@@ -75,7 +75,7 @@ namespace Grabacr07.KanColleWrapper
 		{
 			this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6}",
 				KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name,
-                req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slotitem_id].Name : "NA", DateTime.Now.ToString("M/d/yyyy H:mm"));
+                req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slotitem_id].Name : "N/A", DateTime.Now.ToString("M/d/yyyy H:mm"));
 		}
 
 		private void CreateShip(NameValueCollection req)

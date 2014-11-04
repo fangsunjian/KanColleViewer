@@ -12,7 +12,8 @@ namespace Grabacr07.KanColleViewer.ViewModels.Dev
 	{
 		public override string Name
 		{
-			get { return Properties.Resources.Debug; }
+			//get { return Properties.Resources.Debug; }
+            get { return "日誌"; }
 			protected set { throw new NotImplementedException(); }
 		}
 
