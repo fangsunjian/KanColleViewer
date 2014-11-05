@@ -69,17 +69,17 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0">
-                    <Run Text="燃料：" />
+                    <Run Text="燃料:" />
 					<Run Text="{Binding Materials.Model.Fuel, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                     <LineBreak />
-                    <Run Text="弾薬：" />
+                    <Run Text="弾薬:" />
 					<Run Text="{Binding Materials.Model.Ammunition, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                 </TextBlock>
                 <TextBlock Grid.Column="1">
-                    <Run Text="鋼材：" />
+                    <Run Text="鋼材 :" />
 					<Run Text="{Binding Materials.Model.Steel, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                     <LineBreak />
-                    <Run Text="ボーキ：" />
+                    <Run Text="ボーキ:" />
 					<Run Text="{Binding Materials.Model.Bauxite, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                 </TextBlock>
             </Grid>
@@ -93,10 +93,10 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0">
-                    <Run Text="改修資材：" />
+                    <Run Text="改修資材:" />
 					<Run Text="{Binding Materials.Model.UpgradeMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                     <LineBreak />
-                    <Run Text="開発資材：" />
+                    <Run Text="開発資材:" />
 					<Run Text="{Binding Materials.Model.DevelopmentMaterials, Mode=OneWay}" Style="{DynamicResource EmphaticTextElementStyleKey}" />
                 </TextBlock>
                 <TextBlock Grid.Column="1">

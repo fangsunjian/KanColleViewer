@@ -411,13 +411,13 @@
 				<ListView ItemsSource="{Binding Ships}"
 						  ItemContainerStyle="{DynamicResource GridViewItemContainerStyleKey}"
 						  ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel  IsVirtualizing="True" VirtualizationMode="Recycling" >
-                            </VirtualizingStackPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.Resources>
+					<ListView.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel  IsVirtualizing="True" VirtualizationMode="Recycling" >
+							</VirtualizingStackPanel>
+						</ItemsPanelTemplate>
+					</ListView.ItemsPanel>
+					<ListView.Resources>
 						<Style TargetType="{x:Type TextBlock}">
 							<Setter Property="Margin"
 									Value="5,4" />
@@ -460,11 +460,11 @@
 							</Setter>
 						</Style>
 					</ListView.Resources>
-                    <ListView.View>
-                        <GridView>
+					<ListView.View>
+						<GridView>
 							<GridViewColumn Width="35">
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="" />
+								<GridViewColumn.Header>
+									<TextBlock Text="" />
 								</GridViewColumn.Header>
 								<GridViewColumn.CellTemplate>
 									<DataTemplate>

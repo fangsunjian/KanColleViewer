@@ -76,6 +76,7 @@
 				<DataTemplate DataType="{x:Type vmContents:ToolsViewModel}" />
 				<DataTemplate DataType="{x:Type vm:SettingsViewModel}" />
 				<DataTemplate DataType="{x:Type dev:DebugTabViewModel}" />
+                <DataTemplate DataType="{x:Type vmContents:LogTabViewModel}" />
 			</ContentControl.Resources>
 		</ContentControl>
 	</Grid>

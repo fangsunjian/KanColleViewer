@@ -174,7 +174,10 @@
 					<DataTemplate DataType="{x:Type devVm:DebugTabViewModel}">
 						<dev:DebugTab />
 					</DataTemplate>
-				</Grid.Resources>
+                    <DataTemplate DataType="{x:Type vmContents:LogTabViewModel}">
+                        <contents:LogTab />
+                    </DataTemplate>
+                </Grid.Resources>
 			</Grid>
 		</Grid>
 	</Grid>

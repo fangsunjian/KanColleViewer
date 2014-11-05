@@ -79,13 +79,13 @@
 				<ListView ItemsSource="{Binding SlotItems}"
 						  ItemContainerStyle="{DynamicResource GridViewItemContainerStyleKey}"
 						  ScrollViewer.PanningMode="Both" ScrollViewer.CanContentScroll="True">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel  IsVirtualizing="True" VirtualizationMode="Recycling" >
-                            </VirtualizingStackPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.Resources>
+					<ListView.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel  IsVirtualizing="True" VirtualizationMode="Recycling" >
+							</VirtualizingStackPanel>
+						</ItemsPanelTemplate>
+					</ListView.ItemsPanel>
+					<ListView.Resources>
 						<Style TargetType="{x:Type TextBlock}">
 							<Setter Property="Margin"
 									Value="5,4" />

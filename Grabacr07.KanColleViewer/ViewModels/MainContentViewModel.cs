@@ -72,6 +72,7 @@ namespace Grabacr07.KanColleViewer.ViewModels
 			this.SystemTabItems = new List<TabItemViewModel>
 			{
 				new SettingsViewModel(),
+                new LogTabViewModel(),
 				#region DEBUG
 #if DEBUG
 				new DebugTabViewModel(),
