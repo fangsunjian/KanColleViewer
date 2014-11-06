@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Grabacr07.KanColleViewer.Properties;
 using Grabacr07.KanColleViewer.ViewModels.Catalogs;
 using Livet.Messaging;
+using Livet.EventListeners;
+using Grabacr07.KanColleWrapper;
 
 namespace Grabacr07.KanColleViewer.ViewModels.Contents
 {
@@ -22,8 +24,28 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents
 		public OverviewViewModel(MainContentViewModel owner)
 		{
 			this.Content = owner;
+
+            this.CompositeDisposable.Add(new PropertyChangedEventListener(KanColleClient.Current.Homeport.Logger)
+            {
+                { "DropShip", (sender, args) => {this.LatestDropShip = KanColleClient.Current.Homeport.Logger.LatestDropShip;} }
+            });
 		}
 
+        private string _LatestDropShip = "N/A";
+
+        public string LatestDropShip
+        {
+            get { return this._LatestDropShip; }
+            set
+            {
+                if (value != _LatestDropShip)
+                {
+                    _LatestDropShip = value;
+                    this.RaisePropertyChanged();
+                }
+
+            }
+        }
 
 		public void Jump(string tabName)
 		{
