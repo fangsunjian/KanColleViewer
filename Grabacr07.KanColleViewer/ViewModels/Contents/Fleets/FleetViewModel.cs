@@ -111,8 +111,24 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 			get { return this.source.TotalViewRange.ToString("####"); }
 		}
 
+
 		#endregion
 
+        private string _LatestDropShip = "N/A";
+
+        public string LatestDropShip
+        {
+            get { return this._LatestDropShip; }
+            set
+            {
+                if (value != _LatestDropShip)
+                {
+                    _LatestDropShip = value;
+                    this.RaisePropertyChanged();
+                }
+
+            }
+        }
 
 		public FleetViewModel(Fleet fleet)
 		{
@@ -123,6 +139,11 @@ namespace Grabacr07.KanColleViewer.ViewModels.Contents.Fleets
 				(sender, args) => this.RaisePropertyChanged(args.PropertyName),
 				{ () => fleet.Ships, (sender, args) => this.RaisePropertyChanged("Planes") },
 			});
+
+            this.CompositeDisposable.Add(new PropertyChangedEventListener(KanColleClient.Current.Homeport.Logger)
+            {
+                { "DropShip", (sender, args) => {this.LatestDropShip = KanColleClient.Current.Homeport.Logger.LatestDropShip;} }
+            });
 
 			this.Sortie = new SortieViewModel(fleet);
 			this.CompositeDisposable.Add(this.Sortie);

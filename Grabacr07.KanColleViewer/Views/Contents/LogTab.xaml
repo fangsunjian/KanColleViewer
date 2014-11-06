@@ -226,8 +226,6 @@
         </ListView>-->
     <DataGrid AutoGenerateColumns="False" 
               ClipToBounds="True" 
-              MinColumnWidth="150" 
-              CanUserResizeRows="False" 
               CanUserDeleteRows="False" 
               CanUserAddRows="False"   
               ItemsSource="{Binding ContentBattleResult}" 
@@ -235,7 +233,7 @@
               IsReadOnly="True" 
               AlternationCount="1" 
               CanUserSortColumns="False" 
-              CanUserResizeColumns="False" 
+              CanUserResizeColumns="True" 
               CanUserReorderColumns="True"
               HeadersVisibility="Column">
         
@@ -250,7 +248,7 @@
             </Style>
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="Margin"
-									Value="4,3" />
+									Value="5,3" />
             </Style>
         </DataGrid.Resources>
         <!--<ItemsPanelTemplate>
@@ -266,7 +264,7 @@
                 <Setter Property="OverridesDefaultStyle"
 									Value="True" />
                 <Setter Property="BorderThickness"
-									Value="0,0,0,1" />
+									Value="0,0,1,1" />
                 <Setter Property="BorderBrush"
 									Value="{DynamicResource BorderBrushKey}" />
                 <Setter Property="Background"
@@ -301,7 +299,7 @@
 
 
         <DataGrid.Columns>
-            <DataGridTemplateColumn Width="100">
+            <DataGridTemplateColumn Width="140">
                 <DataGridTemplateColumn.Header>
                     <TextBlock Text="海域" />
                 </DataGridTemplateColumn.Header>
@@ -314,7 +312,7 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
 
-            <DataGridTemplateColumn Width="100">
+            <DataGridTemplateColumn Width="150">
                 <DataGridTemplateColumn.Header>
                     <TextBlock Text="敵艦隊" />
                 </DataGridTemplateColumn.Header>
@@ -340,7 +338,7 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
 
-            <DataGridTemplateColumn Width="100">
+            <DataGridTemplateColumn Width="140">
                 <DataGridTemplateColumn.Header>
                     <TextBlock Text="ドロップ艦" />
                 </DataGridTemplateColumn.Header>
@@ -353,7 +351,7 @@
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
 
-            <DataGridTemplateColumn Width="100">
+            <DataGridTemplateColumn Width="150">
                 <DataGridTemplateColumn.Header>
                     <TextBlock Text="時間" />
                 </DataGridTemplateColumn.Header>

@@ -37,7 +37,21 @@ namespace Grabacr07.KanColleWrapper
 
 		StringBuilder sb;
 
-		public string Content { get { return sb.ToString(); } }
+        public string Content { get { return sb.ToString(); } }
+
+        private string _LatestDropShip;
+        public string LatestDropShip 
+        {
+            get { return _LatestDropShip; }
+            set {
+                if (value != _LatestDropShip)
+                {
+                    _LatestDropShip = value;
+                    this.RaisePropertyChanged("DropShip");
+                }
+            
+            }
+        }
 
 		public List<LogContentBattleResult> ContentBattleResult = new List<LogContentBattleResult>();
 
@@ -100,9 +114,13 @@ namespace Grabacr07.KanColleWrapper
 
 		private void CreateItem(kcsapi_createitem item, NameValueCollection req)
 		{
-			this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6}",
+            this.Log(LogType.BuildItem, "{0},{1},{2},{3},{4},{5},{6},{7},{8}",
 				KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name,
-				req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"], item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slot_item.api_slotitem_id].Name : "N/A", DateTime.Now.ToString("M/d/yyyy H:mm"));
+                KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Level,
+                KanColleClient.Current.Homeport.Admiral.Level,
+				req["api_item1"], req["api_item2"], req["api_item3"], req["api_item4"],
+                item.api_create_flag == 1 ? KanColleClient.Current.Master.SlotItems[item.api_slot_item.api_slotitem_id].Name : "N/A",
+                DateTime.Now.ToString("M/d/yyyy H:mm"));
 		}
 
 		private void CreateShip(NameValueCollection req)
@@ -120,7 +138,13 @@ namespace Grabacr07.KanColleWrapper
 		{
 			foreach (var dock in docks.Where(dock => this.waitingForShip && dock.api_id == this.dockid))
 			{
-				this.Log(LogType.BuildShip, "{0},{1},{2},{3},{4},{5},{6},{7}", KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name, this.shipmats[0], this.shipmats[1], this.shipmats[2], this.shipmats[3], this.shipmats[4], KanColleClient.Current.Master.Ships[dock.api_created_ship_id].Name, DateTime.Now.ToString("M/d/yyyy H:mm"));
+                this.Log(LogType.BuildShip, "{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
+                    KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Info.Name,
+                    KanColleClient.Current.Homeport.Organization.Fleets[1].Ships[0].Level,
+                    KanColleClient.Current.Homeport.Admiral.Level,
+                    this.shipmats[0], this.shipmats[1], this.shipmats[2], this.shipmats[3], this.shipmats[4],
+                    KanColleClient.Current.Master.Ships[dock.api_created_ship_id].Name,
+                    DateTime.Now.ToString("M/d/yyyy H:mm"));
 				this.waitingForShip = false;
 			}
 		}
@@ -142,6 +166,8 @@ namespace Grabacr07.KanColleWrapper
 
 			ContentBattleResult.Add(result);
 
+            LatestDropShip = br.api_get_ship == null ? "N/A" : br.api_get_ship.api_ship_name;
+
 			this.Log(LogType.ShipDrop, "{0},{1},{2},{3},{4}", br.api_quest_name, br.api_enemy_info.api_deck_name, br.api_win_rank, br.api_get_ship == null ? "" : br.api_get_ship.api_ship_name, DateTime.Now.ToString("M/d/yyyy H:mm"));
 		}
 
@@ -158,7 +184,7 @@ namespace Grabacr07.KanColleWrapper
 					{
 						using (StreamWriter w = new StreamWriter(mainFolder + "\\ItemBuildLog.csv", true, Encoding.UTF8))
 						{
-							w.WriteLine("Secretary,Fuel,Ammo,Steel,Bauxite,Result,Date", args);
+                            w.WriteLine("Secretary,SecretaryLv,CommandLv,Fuel,Ammo,Steel,Bauxite,Result,Date", args);
 						}
 					}
 					using (StreamWriter w = new StreamWriter(mainFolder + "\\ItemBuildLog.csv", true, Encoding.UTF8))
@@ -172,7 +198,7 @@ namespace Grabacr07.KanColleWrapper
 					{
 						using (StreamWriter w = new StreamWriter(mainFolder + "\\ShipBuildLog.csv", true, Encoding.UTF8))
 						{
-							w.WriteLine("Secretary,Fuel,Ammo,Steel,Bauxite,# of Build Materials,Result,Date", args);
+                            w.WriteLine("Secretary,SecretaryLv,CommandLv,Fuel,Ammo,Steel,Bauxite,# of Build Materials,Result,Date", args);
 						}
 					}
 

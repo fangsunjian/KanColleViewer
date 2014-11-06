@@ -53,6 +53,9 @@
 							</Style>
 						</StackPanel.Resources>
 
+                        <TextBlock Text="ドロップ艦: " />
+                        <TextBlock Text="{Binding LatestDropShip}"
+								   MinWidth="50" />
 						<TextBlock Text="{Binding Source={x:Static models:ResourceService.Current}, Path=Resources.Fleets_Level, StringFormat='{}{0} '}" />
 						<TextBlock Text="{Binding Source={x:Static models:ResourceService.Current}, Path=Resources.Fleets_Total, StringFormat='{}{0}: '}" />
 						<TextBlock Text="{Binding TotalLevel}"
@@ -65,8 +68,8 @@
 								   MinWidth="60" />
 						<TextBlock Text="{Binding Source={x:Static models:ResourceService.Current}, Path=Resources.Fleets_AirSuperiorityPotential, StringFormat='{}{0}: '}" />
 						<TextBlock Text="{Binding AirSuperiorityPotential}"
-								   MinWidth="60" />
-						<TextBlock Text="{Binding Speed}"
+								   MinWidth="60" /> 
+                        <TextBlock Text="{Binding Speed}"
 								   MinWidth="60" />
 					</StackPanel>
 				</DataTemplate>
