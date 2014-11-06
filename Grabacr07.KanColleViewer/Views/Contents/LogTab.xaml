@@ -242,7 +242,7 @@
         <DataGrid.Resources>
             <Style TargetType="{x:Type DataGrid}">
                 <Setter Property="AlternatingRowBackground" Value="{DynamicResource SemiactiveBackgroundBrushKey}"/>
-                <Setter Property="Background" Value="{DynamicResource BackgroundBrushKey}"/>
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Foreground" Value="{DynamicResource ActiveForegroundBrushKey}"/>
                 <Setter Property="Margin" Value="10,10,10,10"/>
                 <Setter Property="RowBackground" Value="Transparent"/>
@@ -262,15 +262,15 @@
                 <Setter Property="FontSize"
 									Value="13" />
                 <Setter Property="Margin"
-									Value="2,2" />
+									Value="0,0" />
                 <Setter Property="OverridesDefaultStyle"
 									Value="True" />
                 <Setter Property="BorderThickness"
 									Value="0,0,0,1" />
                 <Setter Property="BorderBrush"
 									Value="{DynamicResource BorderBrushKey}" />
-                <!--<Setter Property="Background"
-									Value="{DynamicResource BackgroundBrushKey}" />-->
+                <Setter Property="Background"
+									Value="{DynamicResource BackgroundBrushKey}" />
 
                 <Setter Property="Template">
                     <Setter.Value>
